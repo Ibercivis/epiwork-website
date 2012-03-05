@@ -954,12 +954,19 @@ hr {
 #col2 > ol > li,
 #col3 > ul > li,
 #col3 > ol > li { /* Reduce size only for the first level */
-font-size: 0.7em;
+ font-size: 0.7em;
 }
 
 #col1 label,
 #col2 label,
 #col3 label {
+ font-size: 0.9em;
+ font-weight: bold;
+}
+
+#col1 li label,
+#col2 li label,
+#col3 li label {
  font-size: 0.7em;
 }
 
@@ -1014,6 +1021,7 @@ font-size: 0.7em;
  padding: 0;
  color: #0a0a0a;
  font-size: 1.2em;
+ line-height: 1.1em;
 }
 
 #col1 h2 {
@@ -1149,8 +1157,8 @@ table.imagetable td {
 /* Journal */
 
 ul.archive {
- margin: 10px 0 0 0;
- font-size: 0.8em;
+ margin: 10px 0 0 8px;
+ font-size: 1em;
 }
 
 div.entries {
@@ -1178,6 +1186,14 @@ div.pagination {
 
 .pagination a {
  font-size: 0.7em;
+}
+
+.journalimg {
+ margin: 0 10px 2px 0;	
+}
+
+.journalimgsmall {
+ margin: -2px 10px 2px 0;	
 }
 
 
