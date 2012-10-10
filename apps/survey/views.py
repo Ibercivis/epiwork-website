@@ -218,6 +218,12 @@ def profile_index(request):
     return pollster_views.survey_run(request, survey.shortname, next=next)
 
 @login_required
+def wait_launch(request):
+    launch_date = getattr(settings, 'SURVEY_LAUNCH_DATE', None)
+    return render_to_response('survey/wait_launch.html', {launch_date: launch_date}, context_instance=RequestContext(request))
+
+
+@login_required
 def people_edit(request):
     try:
         survey_user = get_active_survey_user(request)
