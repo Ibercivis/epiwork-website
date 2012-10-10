@@ -6,8 +6,8 @@ from haystack.views import SearchView, search_view_factory
 from haystack.forms import SearchForm
 
 from apps.ew_contact_form.forms import ContactForm
+from views import LatestEntriesFeed
 
-# Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
@@ -25,6 +25,16 @@ urlpatterns = patterns('',
     (r'^influenzanet/', 'django.views.generic.simple.direct_to_template', {'template': 'influenzanet.html'}),
     (r'^googlec96088c11ef7e5c4.html$', 'django.views.generic.simple.direct_to_template', {'template': 'googlec96088c11ef7e5c4.html'}),
     (r'nu.html$', 'django.views.generic.simple.direct_to_template', {'template': 'nu.html'}),
+    
+    (r'^mobile/login/$', 'views.mobile_login'),
+    (r'^mobile/surveys/(?P<shortname>.+)/$', 'apps.pollster.views.survey_run', {'clean_template': True, 'next': '/mobile/success/'}),
+    (r'^mobile/success/$', 'django.views.generic.simple.direct_to_template', {'template': 'survey/mobile_success.html'}),
+    (r'^mobile/map/(?P<survey_shortname>.+)/(?P<chart_shortname>.+)/$', 'apps.pollster.views.survey_map'),
+
+    (r'^rss/$', LatestEntriesFeed()),
+
+    #url(r'^captcha/', include('captcha.urls')),
+    #(r'^tellafriend/', include('tellafriend.urls')),
 
     url(r'^search/$', search_view_factory(
         view_class=SearchView,
@@ -49,6 +59,8 @@ urlpatterns = patterns('',
         { 'backend': 'registration.backends.default.DefaultBackend',
           'template_name': 'registration/registration_explanation.html' },
         name='registration_register_explanation'),
+
+    (r'^forum/', include('pybb.urls', namespace='pybb')),
 )
 
 if settings.DEBUG:
