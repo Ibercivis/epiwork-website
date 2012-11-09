@@ -1,0 +1,60 @@
+{%load i18n %}
+{%if not user.is_authenticated %}
+<form action="/accounts/login/?next=/survey/" id="login-form" method="post">{% csrf_token %}
+	{%trans "Username" %}<input type="text" name="username" size="30" maxlength="70"/>
+	{%trans "Password" %}<input type="password" name="password" size="30" maxlength="30"/>
+	<div>
+	<button type="submit">Se connecter</button>
+	</div>
+</form>	
+<div id="user-buttons">
+	<a href="/accounts/register" id="register-button">S'inscrire</a>
+	<a href="/survey/" id="login-button">Remplir un questionnaire</a>
+</div>
+<p id="passwd-reset"><a href="/accounts/password/reset/">{% trans "Forgot password?" %}</a></p>
+{% else %}	
+<div id="user-box">
+	<table>
+		<tr>
+			<td id="user-avatar"><img src="{{MEDIA_URL}}/sw/avatar.gif" width="60" height="60"/></td>
+			<td>
+			<div id="user-login">{{ user.username }}</div>
+			</td>
+		</tr>
+	</table>
+<ul>
+	{% if surveyuser_count == 1%}
+	<li class="icon icon-survey"><a href="/survey/">{% trans "Symptoms survey" %}</a></li>
+	<li class="icon icon-survey"><a href="/survey/profile/"> Questionnaire préliminaire </a></li>
+	{%endif%}
+	<li class="icon icon-users"><a href="/survey/group_management/">{% trans "Manage household" %}</a></li>
+	<li class="icon icon-settings"><a href="/accounts/settings/">{% trans "My settings" %}</a></li>
+	<li class="icon icon-password"><a href="/accounts/password/change">{% trans "Change password" %}</a></li>
+	<li class="icon icon-logout"><a href="/accounts/logout/">{% trans "Log out" %}</a></li>
+</li>
+</ul>
+</div>
+{% endif %}
+<div id="social-widgets">
+{% if not user.is_authenticated %}
+<iframe src="//platform.twitter.com/widgets/follow_button.html?screen_name=grippenet&lang=fr&show_count=false" allowtransparency="true" frameborder="0" scrolling="no" style="width:169px; height:21px;"></iframe>
+<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FGrippeNet%2F307427382625293&amp;send=false&amp;layout=button_count&amp;width=169&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font=verdana&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:169px; height:21px;" allowTransparency="true"></iframe>
+<div class="addthis_toolbox addthis_default_style ">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<script type="text/javascript" src="//s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f1e7fb169da798d"></script>
+{%else%}
+	<div class="widget-disabled">Vous êtes connecté, pour des raisons de sécurité les réseaux sociaux ont été désactivés</div>
+{% endif %}
+</div>
+
+<div id="logos">
+ <a href="http://www.inserm.fr" rel="external"><img src="{{MEDIA_URL}}sw/logos/inserm.gif" width="150" height="38" alt="INSERM" title="Institut National de la Santé et de la Recherche Médicale"  /></a> 
+ <a href="http://www.upmc.fr" rel="external"><img src="{{MEDIA_URL}}sw/logos/upmc.gif" width="150" height="55" alt="UPMC" title="Université Pierre et Marie Curie"/></a>
+ <a href="http://www.invs.sante.fr" rel="external"><img src="{{MEDIA_URL}}sw/logos/invs.gif" width="93" height="65" alt="InVS" title="Institut de Veille Sanitaire"/></a>
+</div>
