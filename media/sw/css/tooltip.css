@@ -1,0 +1,18 @@
+
+.tip {
+	border-bottom: 1px dotted #999;
+	cursor: help;
+}
+
+.tooltip {
+	font-size: .7em;
+	padding: .6em;
+	color: #000;
+	background-color: #F6F6F6;
+	opacity: .95;
+	border: 2px solid #3A87AD;
+	border-radius: 3px;
+	max-width: 400px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px; 
+}
