@@ -56,7 +56,7 @@ LANGUAGES = (
    ('nl', u'Nederlands'),
    ('it', u'Italiano'),
    ('sv', u'Svenska'),
-   ('pt', u'Português'),
+   ('pt', u'Portugues'),
    ('es', u'Español'),
 )
 
@@ -118,6 +118,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "apps.partnersites.context_processors.customizations",
     "pybb.context_processors.processor",
     "django.core.context_processors.static",
+    "apps.pollster.context_processors.last_survey",
+    "apps.pollster.context_processors.surveyuser_count",
 )
 
 CMS_TEMPLATES = (
@@ -244,7 +246,7 @@ CMS_SEO_FIELDS = True
 
 SESSION_COOKIE_AGE = 60 * 60 * 2
 
-LOGIN_REDIRECT_URL = '/survey/'
+LOGIN_REDIRECT_URL = '/survey/main/'
 
 # PyBB settings
 AUTH_PROFILE_MODULE = 'pybb.Profile'
